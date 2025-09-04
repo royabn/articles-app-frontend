@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -40,6 +40,7 @@ function App() {
       </AppBar>
       <Container sx={{ mt: 4 }}>
         <Routes>
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <LoginPage setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/search" element={<ProtectedRoute><SearchPage handleLogout={handleLogout}/></ProtectedRoute>} />
           <Route path="/saved" element={<ProtectedRoute><SavedArticlesPage handleLogout={handleLogout}/></ProtectedRoute>} />
